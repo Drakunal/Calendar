@@ -15,6 +15,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+  <style>
+ 
+  body {
+    /* margin: 40px 10px; */
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+ 
+  #calendar {
+    /* max-width: 900px; */
+    margin: 0 auto;
+  }
+
+  .fc-title{
+      color:red;
+      font-size: 12px;
+  }
+ 
+</style>
   <script>
    
   $(document).ready(function() {
@@ -27,8 +47,12 @@
     //  right:'month,agendaWeek,agendaDay'
     },
     events: 'load.php',
+    
+
     selectable:false,
+    displayEventTime: false,
     selectHelper:false,
+    weekends: true,
     // select: function(start, end, allDay)
     // {
     //  var title = prompt("Enter Event Title");
@@ -84,23 +108,23 @@
     //  });
     // },
 
-    // eventClick:function(event)
-    // {
-    //  if(confirm("Are you sure you want to remove it?"))
-    //  {
-    //   var id = event.id;
-    //   $.ajax({
-    //    url:"delete.php",
-    //    type:"POST",
-    //    data:{id:id},
-    //    success:function()
-    //    {
-    //     calendar.fullCalendar('refetchEvents');
-    //     alert("Event Removed");
-    //    }
-    //   })
-    //  }
-    // },
+    eventClick:function(event)
+    {
+     if(confirm("Are you sure you want to remove it?"))
+     {
+      var id = event.id;
+      $.ajax({
+       url:"show.php",
+       type:"POST",
+       data:{id:id},
+       success:function()
+       {
+        calendar.fullCalendar('refetchEvents');
+        alert("Event Removed");
+       }
+      })
+     }
+    },
 
    });
   });

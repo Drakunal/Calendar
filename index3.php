@@ -21,20 +21,20 @@ $(document).ready(function () {
  header: {
  left: 'prev,next today',
  center: 'title',
- right: 'month,basicWeek,basicDay'
+ right: ''
  },
  navLinks: true, // can click day/week names to navigate views
  editable: true,
  eventLimit: true,
-        events: "all_events.php",
+        events: "load.php",
         displayEventTime: false,
-        eventRender: function (event, element, view) {
-            if (event.allDay === 'true') {
-                event.allDay = true;
-            } else {
-                event.allDay = false;
-            }
-        }
+        // eventRender: function (event, element, view) {
+        //     if (event.allDay === 'true') {
+        //         event.allDay = true;
+        //     } else {
+        //         event.allDay = false;
+        //     }
+        // }
  
     });
 });
@@ -43,7 +43,10 @@ $(document).ready(function () {
 </script>
  
 <style>
- 
+ .fc-title{
+      color:white;
+      font-size: 12px;
+  }
   body {
     margin: 40px 10px;
     padding: 0;
